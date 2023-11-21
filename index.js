@@ -38,12 +38,12 @@ app.post("/webhook", async (req, res) => {
         await axios({
           method: "POST", // Required, HTTP method, a string, e.g. POST, GET
           url:
-            "https://graph.facebook.com/v17.0/" +
-            phone_number_id +
-            "/messages?access_token=" +
-            token,
+            "https://graph.facebook.com/v17.0/" + phone_number_id + "/messages",
           data: response,
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
         });
       } catch (error) {
         console.error(error);
