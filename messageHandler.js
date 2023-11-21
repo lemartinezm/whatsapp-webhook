@@ -38,27 +38,6 @@ export function getResponse(fromPhoneNumber) {
                 title: "Información de pago",
               },
             },
-            {
-              type: "reply",
-              reply: {
-                id: "button_4",
-                title: "Hacer un pago",
-              },
-            },
-            {
-              type: "reply",
-              reply: {
-                id: "button_5",
-                title: "Realizar cambios",
-              },
-            },
-            {
-              type: "reply",
-              reply: {
-                id: "button_6",
-                title: "Otros",
-              },
-            },
           ],
         },
       },
