@@ -3,7 +3,8 @@ const responses = {};
 const phoneNumbers = [];
 
 export function getResponse(fromPhoneNumber) {
-  if (phoneNumbers.includes(fromPhoneNumber)) {
+  if (!phoneNumbers.includes(fromPhoneNumber)) {
+    phoneNumbers.push(fromPhoneNumber);
     return {
       messaging_product: "whatsapp",
       recipient_type: "individual",
