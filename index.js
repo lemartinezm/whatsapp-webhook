@@ -12,7 +12,7 @@ app.listen(process.env.PORT || 1337, () =>
 );
 
 // Accepts POST requests at /webhook endpoint
-app.post("/webhook", (req, res) => {
+app.post("/webhook", async (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
 
@@ -34,7 +34,7 @@ app.post("/webhook", (req, res) => {
         body.entry[0].changes[0].value.metadata.phone_number_id;
       let from = body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
       let msg_body = body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
-      axios({
+      await axios({
         method: "POST", // Required, HTTP method, a string, e.g. POST, GET
         url:
           "https://graph.facebook.com/v12.0/" +
