@@ -28,7 +28,7 @@ export function getResponse(fromPhoneNumber) {
               type: "reply",
               reply: {
                 id: "button_2",
-                title: "Información de mi poliza",
+                title: "Info de mi poliza",
               },
             },
             {
