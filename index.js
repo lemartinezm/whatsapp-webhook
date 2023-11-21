@@ -34,16 +34,20 @@ app.post("/webhook", async (req, res) => {
         body.entry[0].changes[0].value.metadata.phone_number_id;
       let from = body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
       let msg_body = body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
-      await axios({
-        method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-        url:
-          "https://graph.facebook.com/v12.0/" +
-          phone_number_id +
-          "/messages?access_token=" +
-          token,
-        data: response,
-        headers: { "Content-Type": "application/json" },
-      });
+      try {
+        await axios({
+          method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+          url:
+            "https://graph.facebook.com/v17.0/" +
+            phone_number_id +
+            "/messages?access_token=" +
+            token,
+          data: response,
+          headers: { "Content-Type": "application/json" },
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
     res.sendStatus(200);
   } else {
