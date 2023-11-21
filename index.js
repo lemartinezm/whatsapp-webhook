@@ -28,12 +28,12 @@ app.post("/webhook", async (req, res) => {
       body.entry[0].changes[0].value.messages &&
       body.entry[0].changes[0].value.messages[0]
     ) {
-      const response = getResponse(body);
-
       let phone_number_id =
         body.entry[0].changes[0].value.metadata.phone_number_id;
       let from = body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
       let msg_body = body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
+
+      const response = getResponse(from);
       try {
         await axios.post(
           "https://graph.facebook.com/v17.0/" + phone_number_id + "/messages",
@@ -46,7 +46,7 @@ app.post("/webhook", async (req, res) => {
           }
         );
       } catch (error) {
-        console.error(error.data);
+        console.error(error.response.data);
       }
     }
     res.sendStatus(200);

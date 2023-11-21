@@ -2,9 +2,8 @@ const responses = {};
 
 const phoneNumbers = [];
 
-export function getResponse(body) {
-  let fromPhoneNumber = body.entry[0].changes[0].value.messages[0].from;
-  if (!phoneNumbers.includes(fromPhoneNumber)) {
+export function getResponse(fromPhoneNumber) {
+  if (phoneNumbers.includes(fromPhoneNumber)) {
     return {
       messaging_product: "whatsapp",
       recipient_type: "individual",
