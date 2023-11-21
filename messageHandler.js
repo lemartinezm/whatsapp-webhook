@@ -4,9 +4,9 @@ const phoneIds = [];
 
 export function getResponse(body) {
   const currentPhoneNumberId =
-    body.entry.changes[0].value.metadata.phone_number_id;
+    body.entry[0].changes[0].value.metadata.phone_number_id;
   const currentPhoneNumber =
-    body.entry.changes[0].value.metadata.display_phone_number;
+    body.entry[0].changes[0].value.metadata.display_phone_number;
   if (!phoneIds.includes(currentPhoneNumberId)) {
     return {
       messaging_product: "whatsapp",
