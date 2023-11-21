@@ -1,17 +1,14 @@
 const responses = {};
 
-const phoneIds = [];
+const phoneNumbers = [];
 
 export function getResponse(body) {
-  const currentPhoneNumberId =
-    body.entry[0].changes[0].value.metadata.phone_number_id;
-  const currentPhoneNumber =
-    body.entry[0].changes[0].value.metadata.display_phone_number;
-  if (!phoneIds.includes(currentPhoneNumberId)) {
+  let fromPhoneNumber = body.entry[0].changes[0].value.messages[0].from;
+  if (!phoneNumbers.includes(fromPhoneNumber)) {
     return {
       messaging_product: "whatsapp",
       recipient_type: "individual",
-      to: currentPhoneNumber,
+      to: fromPhoneNumber,
       type: "interactive",
       interactive: {
         type: "button",
@@ -70,7 +67,7 @@ export function getResponse(body) {
     return {
       messaging_product: "whatsapp",
       recipient_type: "individual",
-      to: currentPhoneNumber,
+      to: fromPhoneNumber,
       type: "text",
       text: {
         preview_url: false,
