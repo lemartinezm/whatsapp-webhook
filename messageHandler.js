@@ -95,7 +95,6 @@ function getInteractiveType(body) {
 
 function getButtonReplyId(body) {
   const buttonId =
-    body.entry[0].changes[0].value.messages[0].interactive.action.button_reply
-      .id;
+    body.entry[0].changes[0].value.messages[0].interactive.button_reply.id;
   return buttonId;
 }
